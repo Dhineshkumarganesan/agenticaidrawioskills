@@ -1,0 +1,390 @@
+<mxfile compressed="false" host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.6.4">
+  <diagram id="azure-modules-technical-deployment-refresh" name="Azure-Modules-Technical-Deployment-Refresh">
+    <mxGraphModel dx="2066" dy="989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0" adaptiveColors="auto">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;whiteSpace=wrap;" value="Azure modules technical deployment refresh" vertex="1">
+          <mxGeometry height="30" width="1240" x="430" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontColor=#666666;whiteSpace=wrap;" value="Clean inputs -&gt; Terraform modules -&gt; Azure deployment -&gt; clean outputs" vertex="1">
+          <mxGeometry height="20" width="1160" x="470" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-inputs" parent="1" style="swimlane;rounded=1;html=1;container=1;collapsible=0;startSize=34;horizontal=0;pointerEvents=0;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#9e9e9e;fontStyle=1;" value="Clean inputs" vertex="1">
+          <mxGeometry height="1220" width="300" x="30" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-modules" parent="1" style="swimlane;rounded=1;html=1;container=1;collapsible=0;startSize=34;horizontal=0;pointerEvents=0;whiteSpace=wrap;fillColor=#e8f0fe;strokeColor=#5c6bc0;fontStyle=1;" value="Terraform modules" vertex="1">
+          <mxGeometry height="1220" width="360" x="360" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-azure" parent="1" style="swimlane;rounded=1;html=1;container=1;collapsible=0;startSize=34;horizontal=0;pointerEvents=0;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#666666;fontStyle=1;" value="Azure deployment" vertex="1">
+          <mxGeometry height="1220" width="900" x="750" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-outputs" parent="1" style="swimlane;rounded=1;html=1;container=1;collapsible=0;startSize=34;horizontal=0;pointerEvents=0;whiteSpace=wrap;fillColor=#e8f5e9;strokeColor=#2e7d32;fontStyle=1;" value="Clean outputs" vertex="1">
+          <mxGeometry height="1220" width="250" x="1680" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="in-storage" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="1. Storage module name, RG, location, TLS, replication" vertex="1">
+          <mxGeometry height="80" width="260" x="50" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="in-kv" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="2. Key Vault module ENV, VNet, subnet ids, IP rules" vertex="1">
+          <mxGeometry height="90" width="260" x="50" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="in-policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="3. Access policy module current object id and group id" vertex="1">
+          <mxGeometry height="80" width="260" x="50" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="in-secret" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="4. Secrets module SP plus 4 application secrets" vertex="1">
+          <mxGeometry height="80" width="260" x="50" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="in-aks" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="5. AKS module subnet, private DNS zone, KV SPI secrets, sizes" vertex="1">
+          <mxGeometry height="90" width="260" x="50" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="in-role" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="6. AKS role module ACR scope, identity id, subscriptions" vertex="1">
+          <mxGeometry height="80" width="260" x="50" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="in-nodepool" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=13;" value="7. AKS nodepool module existing AKS id, VM sizes, autoscale" vertex="1">
+          <mxGeometry height="90" width="260" x="50" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="note-ns" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontSize=12;" value="Note: aks_namespace contains a deployment YAML, not Terraform resources." vertex="1">
+          <mxGeometry height="70" width="260" x="50" y="1140" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-storage" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="azure-storage-account resource azurerm_storage_account.this outputs: id, name, blob endpoint, key" vertex="1">
+          <mxGeometry height="90" width="300" x="390" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-kv" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="keyvault azurerm_key_vault private endpoint private DNS A record" vertex="1">
+          <mxGeometry height="100" width="300" x="390" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="keyvault_access_policies service principal policy user group policy" vertex="1">
+          <mxGeometry height="90" width="300" x="390" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-secret" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="keyvault_secrets 5 azurerm_key_vault_secret resources" vertex="1">
+          <mxGeometry height="80" width="300" x="390" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-aks" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="aks private AKS cluster default node pool extra user node pools" vertex="1">
+          <mxGeometry height="100" width="300" x="390" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-role" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="aks_role user assigned identity AcrPull role assignment" vertex="1">
+          <mxGeometry height="90" width="300" x="390" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-nodepool" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5c6bc0;fontSize=13;" value="aks_nodepool attach 3 more node pools to existing AKS cluster" vertex="1">
+          <mxGeometry height="90" width="300" x="390" y="995" as="geometry" />
+        </mxCell>
+        <mxCell id="rg-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/general/Resource_Groups.svg;" value="Resource Groups" vertex="1">
+          <mxGeometry height="90" width="90" x="800" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rg-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=12;" value="&amp;nbsp;ACR, AKS, and security resource groups" vertex="1">
+          <mxGeometry height="80" width="220" x="900" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=4;verticalAlign=top;fontSize=15;fontStyle=1;align=center;" value="Existing VNet and subnets" vertex="1">
+          <mxGeometry height="320" width="440" x="790" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Virtual_Networks.svg;" value="VNet" vertex="1">
+          <mxGeometry height="70" width="70" x="1140" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-general" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#82b366;strokeWidth=2;dashed=1;dashPattern=8 8;fontSize=12;fontStyle=1;" value="GENERAL subnet Private Endpoint target" vertex="1">
+          <mxGeometry height="110" width="170" x="830" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet-aks" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#82b366;strokeWidth=2;dashed=1;dashPattern=8 8;fontSize=12;fontStyle=1;" value="AKS subnet Private cluster nodes" vertex="1">
+          <mxGeometry height="110" width="170" x="1030" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="pe-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Private_Endpoint.svg;" value="Private Endpoint" vertex="1">
+          <mxGeometry height="70" width="70" x="865" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="dns-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/DNS_Zones.svg;" value="Private DNS Zone" vertex="1">
+          <mxGeometry height="80" width="80" x="1280" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="dns-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=12;" value="Shared private DNS zone privatelink.vaultcore.azure.net privatelink AKS zone referenced" vertex="1">
+          <mxGeometry height="90" width="220" x="1370" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="acr-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/containers/Container_Registries.svg;" value="Azure Container Registry" vertex="1">
+          <mxGeometry height="80" width="80" x="1280" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="acr-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8e24aa;fontSize=12;" value="ACR data source used for AcrPull scope" vertex="1">
+          <mxGeometry height="90" width="220" x="1370" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="kv-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/security/Key_Vaults.svg;" value="Key Vault" vertex="1">
+          <mxGeometry height="80" width="80" x="1280" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="kv-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=12;" value="Key Vault private access purge protection default deny ACLs" vertex="1">
+          <mxGeometry height="110" width="220" x="1370" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="policy-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#d79b00;fontSize=12;" value="Access policies current client config user group subject id" vertex="1">
+          <mxGeometry height="80" width="150" x="1280" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="secret-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#d79b00;fontSize=12;" value="Key Vault secrets SPI2, pgrestjwt, chyauth, stsauth, generatev2token" vertex="1">
+          <mxGeometry height="80" width="180" x="1450" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="aks-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/compute/Kubernetes_Services.svg;" value="AKS Cluster" vertex="1">
+          <mxGeometry height="90" width="90" x="900" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="aks-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=12;" value="Private AKS cluster service principal from Key Vault default node pool in AKS subnet" vertex="1">
+          <mxGeometry height="100" width="230" x="1000" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/identity/Managed_Identities.svg;" value="Managed Identity" vertex="1">
+          <mxGeometry height="80" width="80" x="1280" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#dd344c;fontSize=12;" value="User assigned identity for AKS pull access" vertex="1">
+          <mxGeometry height="80" width="220" x="1370" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="role-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#dd344c;fontSize=12;" value="Role assignment AcrPull on ACR scope" vertex="1">
+          <mxGeometry height="70" width="210" x="1380" y="905" as="geometry" />
+        </mxCell>
+        <mxCell id="nodepool-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=12;" value="Extra node pools testhgrspool testlwrspool testvltpool and systempool" vertex="1">
+          <mxGeometry height="95" width="330" x="900" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="storage-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/storage/Storage_Accounts.svg;" value="Storage Account" vertex="1">
+          <mxGeometry height="80" width="80" x="1280" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="storage-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=12;" value="Storage account HTTPS only TLS1_2 default LRS and Hot defaults" vertex="1">
+          <mxGeometry height="90" width="220" x="1370" y="1025" as="geometry" />
+        </mxCell>
+        <mxCell id="out-platform" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontSize=12;" value="Platform outputs AKS cluster, node pools, ACR pull access" vertex="1">
+          <mxGeometry height="90" width="200" x="1705" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="out-vault" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontSize=12;" value="Vault outputs private endpoint and DNS ready" vertex="1">
+          <mxGeometry height="90" width="200" x="1705" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="out-security" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontSize=12;" value="Security outputs policies and secrets applied" vertex="1">
+          <mxGeometry height="90" width="200" x="1705" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="out-storage" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontSize=12;" value="Storage outputs id, name, blob endpoint, access key" vertex="1">
+          <mxGeometry height="90" width="200" x="1705" y="1025" as="geometry" />
+        </mxCell>
+        <mxCell id="e-in-storage" edge="1" parent="1" source="in-storage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-storage" value="storage inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="210" />
+              <mxPoint x="370" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-in-kv" edge="1" parent="1" source="in-kv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-kv" value="vault inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="345" />
+              <mxPoint x="370" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-in-policy" edge="1" parent="1" source="in-policy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-policy" value="policy inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="480" />
+              <mxPoint x="370" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-in-secret" edge="1" parent="1" source="in-secret" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-secret" value="secret inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="610" />
+              <mxPoint x="370" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-in-aks" edge="1" parent="1" source="in-aks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-aks" value="AKS inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="765" />
+              <mxPoint x="370" y="765" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-in-role" edge="1" parent="1" source="in-role" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-role" value="identity inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="910" />
+              <mxPoint x="370" y="910" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-in-nodepool" edge="1" parent="1" source="in-nodepool" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mod-nodepool" value="nodepool inputs">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="1045" />
+              <mxPoint x="370" y="1045" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-storage" edge="1" parent="1" source="mod-storage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#0078d4;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="storage-icon" value="create storage account">
+          <mxGeometry relative="1" x="-0.25" y="-16" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="210" />
+              <mxPoint x="1240" y="210" />
+              <mxPoint x="1240" y="1070" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-kv" edge="1" parent="1" source="mod-kv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#b85450;exitX=1;exitY=0.45;entryX=0;entryY=0.45;" target="kv-icon" value="create vault and endpoint">
+          <mxGeometry relative="1" x="-0.15" y="-14" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="345" />
+              <mxPoint x="1240" y="345" />
+              <mxPoint x="1240" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-policy" edge="1" parent="1" source="mod-policy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#d79b00;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="policy-box" value="apply access policies">
+          <mxGeometry relative="1" x="-0.12" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="480" />
+              <mxPoint x="1240" y="480" />
+              <mxPoint x="1240" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-secret" edge="1" parent="1" source="mod-secret" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8e24aa;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="secret-box" value="write vault secrets">
+          <mxGeometry relative="1" x="-0.12" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="610" />
+              <mxPoint x="1435" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-aks" edge="1" parent="1" source="mod-aks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#0078d4;exitX=1;exitY=0.45;entryX=0;entryY=0.45;" target="aks-icon" value="deploy private AKS">
+          <mxGeometry relative="1" x="-0.1" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="760" />
+              <mxPoint x="880" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-role" edge="1" parent="1" source="mod-role" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#dd344c;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="identity-icon" value="create identity">
+          <mxGeometry relative="1" x="-0.1" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="905" />
+              <mxPoint x="1240" y="905" />
+              <mxPoint x="1240" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mod-nodepool" edge="1" parent="1" source="mod-nodepool" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1565c0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="nodepool-box" value="attach extra pools">
+          <mxGeometry relative="1" x="-0.08" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="1040" />
+              <mxPoint x="880" y="1040" />
+              <mxPoint x="880" y="955" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-kv-network" edge="1" parent="1" source="mod-kv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.55;entryX=0;entryY=0.25;" target="vnet-box" value="general subnet lookup">
+          <mxGeometry relative="1" x="-0.2" y="-8" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="360" />
+              <mxPoint x="770" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-aks-network" edge="1" parent="1" source="mod-aks" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;dashed=1;strokeColor=#5f6368;exitX=1;exitY=0.8;entryX=0;entryY=0.8;" target="subnet-aks" value="AKS subnet lookup">
+          <mxGeometry relative="1" x="0.2" y="14" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="785" />
+              <mxPoint x="780" y="785" />
+              <mxPoint x="780" y="470" />
+              <mxPoint x="1010" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-pe-kv" edge="1" parent="1" source="pe-icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7b1fa2;exitX=1;exitY=0.5;entryX=0;entryY=0.55;" target="kv-icon" value="private link">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="465" />
+              <mxPoint x="1240" y="465" />
+              <mxPoint x="1240" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-kv-dns" edge="1" parent="1" source="kv-icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#ef6c00;dashed=1;dashPattern=6 6;exitX=0.65;exitY=0;entryX=0.5;entryY=1;" target="dns-icon" value="publish vault DNS">
+          <mxGeometry relative="1" x="0.15" y="-8" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="500" />
+              <mxPoint x="1320" y="365" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-policy-kv" edge="1" parent="1" source="policy-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#d79b00;exitX=0.5;exitY=0;entryX=0.3;entryY=1;" target="kv-icon" value="grant SP and group access">
+          <mxGeometry relative="1" x="-0.2" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="1355" y="635" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-secret-kv" edge="1" parent="1" source="secret-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#8e24aa;exitX=0.2;exitY=0;entryX=0.7;entryY=1;" target="kv-icon" value="persist 5 secrets">
+          <mxGeometry relative="1" x="0.15" y="-8" as="geometry">
+            <Array as="points">
+              <mxPoint x="1510" y="635" />
+              <mxPoint x="1510" y="605" />
+              <mxPoint x="1345" y="605" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-kv-aks" edge="1" parent="1" source="kv-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#5f6368;dashed=1;dashPattern=6 6;exitX=0;exitY=0.7;entryX=1;entryY=0.35;" target="aks-box" value="read SPI client id and secret">
+          <mxGeometry relative="1" x="-0.1611" y="2" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1260" y="590" />
+              <mxPoint x="1260" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-aks-nodepools" edge="1" parent="1" source="aks-icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1565c0;exitX=0.45;exitY=1;entryX=0.5;entryY=0;" target="nodepool-box" value="scale user pools">
+          <mxGeometry relative="1" x="-0.1" y="-6" as="geometry">
+            <Array as="points">
+              <mxPoint x="945" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-identity-role" edge="1" parent="1" source="identity-icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#dd344c;exitX=1;exitY=0.5;entryX=0;entryY=0.3;" target="role-box" value="principal id">
+          <mxGeometry relative="1" x="-0.12" y="-8" as="geometry">
+            <Array as="points">
+              <mxPoint x="1365" y="830" />
+              <mxPoint x="1440" y="830" />
+              <mxPoint x="1440" y="926" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-role-acr" edge="1" parent="1" source="role-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#dd344c;exitX=0.5;exitY=0;entryX=0.7;entryY=1;" target="acr-icon" value="assign AcrPull">
+          <mxGeometry relative="1" x="0.12" y="-8" as="geometry">
+            <Array as="points">
+              <mxPoint x="1485" y="875" />
+              <mxPoint x="1485" y="470" />
+              <mxPoint x="1335" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-out-platform" edge="1" parent="1" source="role-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#2e7d32;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="out-platform" value="cluster and pull path ready">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="1660" y="940" />
+              <mxPoint x="1690" y="940" />
+              <mxPoint x="1690" y="305" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-out-vault" edge="1" parent="1" source="dns-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#2e7d32;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="out-vault" value="vault network ready">
+          <mxGeometry relative="1" x="-0.15" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="1660" y="310" />
+              <mxPoint x="1690" y="310" />
+              <mxPoint x="1690" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-out-security" edge="1" parent="1" source="secret-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#2e7d32;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" target="out-security" value="policies and secrets applied">
+          <mxGeometry relative="1" x="-0.12" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="1660" y="690" />
+              <mxPoint x="1690" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-out-storage" edge="1" parent="1" source="storage-box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;jettySize=auto;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#2e7d32;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="out-storage" value="storage outputs exposed">
+          <mxGeometry relative="1" x="-0.12" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="1660" y="1070" />
+              <mxPoint x="1690" y="1070" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
