@@ -1,4 +1,4 @@
-<mxfile compressed="false" host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.6.4">
+<mxfile compressed="false" host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.6.5">
   <diagram id="azure-modules-technical-deployment-refresh" name="Azure-Modules-Technical-Deployment-Refresh">
     <mxGraphModel dx="2066" dy="989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0" adaptiveColors="auto">
       <root>
@@ -109,7 +109,7 @@
         <mxCell id="policy-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#d79b00;fontSize=12;" value="Access policies current client config user group subject id" vertex="1">
           <mxGeometry height="80" width="150" x="1280" y="650" as="geometry" />
         </mxCell>
-        <mxCell id="secret-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#d79b00;fontSize=12;" value="Key Vault secrets SPI2, pgrestjwt, chyauth, stsauth, generatev2token" vertex="1">
+        <mxCell id="secret-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#d79b00;fontSize=12;" value="Key Vault secrets SPI2, , , , generatev2token" vertex="1">
           <mxGeometry height="80" width="180" x="1450" y="650" as="geometry" />
         </mxCell>
         <mxCell id="aks-icon" parent="1" style="image;aspect=fixed;html=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/compute/Kubernetes_Services.svg;" value="AKS Cluster" vertex="1">
